@@ -103,4 +103,38 @@ After running `./configure` you will again need to remove `-lintl` from the Make
 
 And that's it! You're ready to run make. 
 
+## Epilogue: Paths
+You should have set all of the following paths while completing the guide. I adjusted these to build in `$HOME/data/local`, and removed the version numbers from the sst directories as they do not appear when building from the Github source. 
+```
+# MPI
+export MPIHOME=$HOME/data/local/packages/OpenMPI-2.1.3
+export PATH=$MPIHOME/bin:$PATH
+export MPICC=mpicc
+export MPICXX=mpicxx
+export LD_LIBRARY_PATH=$MPIHOME/lib:$LD_LIBRARY_PATH
+
+# AUTOTOOLS
+export PATH=$HOME/data/local/bin:$PATH
+
+# PIN
+export PIN_HOME=$HOME/data/local/packages/pin-2.14-71313-gcc.4.4.7-linux
+export INTEL_PIN_DIRECTORY=$PIN_HOME
+
+# SST-CORE
+export SST_CORE_HOME=$HOME/data/local/sst-core
+export SST_CORE_ROOT=$HOME/scratch/src/sst-core
+export PATH=$SST_CORE_HOME/bin:$PATH
+
+# SST-ELEMENTS
+export SST_ELEMENTS_HOME=$HOME/local/sst-elements
+export SST_ELEMENTS_ROOT=$HOME/scratch/src/sst-elements
+export PATH=$SST_ELEMENTS_HOME/bin:$PATH
+```
+
+## Testing
+Here is the test command, with our paths in mind. 
+```
+sst $SST_ELEMENTS_ROOT/src/sst/elements/simpleElementExample/tests/test_simpleRNGComponent_mersenne.py
+```
+
 
