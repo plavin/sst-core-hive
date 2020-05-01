@@ -6,6 +6,9 @@ In this guide will be building from the master branch on Github instead of the t
 
 Please read the official build instructions, and refer to this guide when you get to a new section of the official guide, so that you can get the supplemental information found here. The section headers here match the ones on their guide. 
 
+## Notes on compiler versions
+As I mention throughout this guide, I tried to use `gcc 4.8.5` where I could, but accidentally compiled SST Elements with `8.3.0`. I suggest that users be more careful and make a consistent choice of gcc version. 
+
 ## Example Build and Install Directories
 
 On Hive, the home directory has a few different folders. After reading the documentation, I believe the best place for your to place any installed programs is in `$HOME/data`. This means you should install programs in `$HOME/data/local`. 
@@ -13,7 +16,7 @@ On Hive, the home directory has a few different folders. After reading the docum
 
 ## Building A Basic SST System
 
-OpenMPI is already installed on Hive. If it is not already loaded, you can use `module load openmpi` to do so. Sadly, the version on Hive is not 2.1.3 which is what SST asks for. I don't know yet if this will be an issue. 
+While there is a version of OpenMPI installed on Hive, it is compiled with `icc`, which does't play well with SST, according to [this](https://github.com/sstsimulator/sst-core/issues/428) issue. You should follow the instructions in the SST installation guide to install your own copy of OpenMPI 2.1.3. You should make sure that you don't have the `intel` module loaded so that OpenMPI gets built with gcc. I built it with `gcc 4.8.5`, which is will be provided when you have no compile modules loaded. 
 
 ## SST Core 9.1.x Build and Installation
 
@@ -64,7 +67,7 @@ export SST_CORE_HOME=$HOME/data/local/sst-core
 export SST_CORE_ROOT=$HOME/scratch/src/sst-core
 ```
 
-Now you are ready to run `./autogen.sh`. After it has run, you can use the regular installation guide to tell you how to run `./configure`. 
+Now you are ready to run `./autogen.sh`. After it has run, you can use the regular installation guide to tell you how to run `./configure`. I used `gcc 4.8.5` to build `sst-core`. 
 
 If you now run `make all` in Step 5, you'll find that it `ld` fails because it can't find `libintl`. This library is part of Gnu's `gettext` and is suspiciously missing from Hive, even though the header `libintl.h` exists in `/usr/local/include`. The fix for this is simply to remove the the linker commands `-lintl`. The following script will do that for you. Run it from the project root. 
 
@@ -81,7 +84,7 @@ If you know a better way to do this, please let me know.
 
 Now, complete Step 5, set the proper path in Step 6, and test in Step 7. 
 
-# SST Elements 9.1.x Build and Installation
+## SST Elements 9.1.x Build and Installation
  
  These steps are very similar. First get the code.
  
@@ -94,8 +97,10 @@ cd sst-elements
 
 Before configuring, you will need to install Intel's Pin tool. Instructions for that can be found [here](http://sst-simulator.org/SSTPages/SSTBuildAndInstall9dot1dot0SeriesAdditionalExternalComponents/#intel-pin-tool-214-71313). 
 
-Now you are to run `./configure` with all the proper arguments (including the `--with-pin` argument) as described in the official installation guide. 
+Now you are to run `./configure` with all the proper arguments (including the `--with-pin` argument) as described in the official installation guide. I accidentally compiled with `gcc 8.3.0` (which is available as a module on Hive) instead of `gcc 4.8.5` like I did my other modules. I have not run into issues with this yet. 
 
 After running `./configure` you will again need to remove `-lintl` from the Makefiles. Run the same script as before. 
 
 And that's it! You're ready to run make. 
+
+
