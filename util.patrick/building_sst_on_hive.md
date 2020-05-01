@@ -6,7 +6,7 @@ In this guide will be building from the master branch on Github instead of the t
 
 Please read the official build instructions, and refer to this guide when you get to a new section of the official guide, so that you can get the supplemental information found here. The section headers here match the ones on their guide. 
 
-### Notes on compiler versions
+### Note on Compiler Versions
 As I mention throughout this guide, I tried to use `gcc 4.8.5` where I could, but accidentally compiled SST Elements with `8.3.0`. I suggest that users be more careful and make a consistent choice of gcc version, although my version seems to be working fine. 
 
 ## Example Build and Install Directories
