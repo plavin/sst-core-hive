@@ -2,7 +2,7 @@
 set -euo pipefail
 
 #Install location
-PREFIX=$HOME/data/temp/local
+PREFIX=$HOME/data/local
 
 # Versions to grab
 M4_VERSION=1.4.18
