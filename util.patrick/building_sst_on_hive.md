@@ -18,7 +18,7 @@ As I mention throughout this guide, I tried to use `gcc 4.8.5` where I could, bu
 
 ## Example Build and Install Directories
 
-On Hive, the home directory has a few different folders. After reading the documentation, I believe the best place for your to place any installed programs is in `$HOME/data`. This means you should install programs in `$HOME/data/local`. 
+On Hive, the home directory has a few different folders. After reading the documentation, I believe the best place for you to place any installed programs is in `$HOME/data`. This means you should install programs in `$HOME/data/local`. 
 
 
 ## Building A Basic SST System
@@ -153,4 +153,4 @@ Here is the test command, with our paths in mind.
 sst $SST_ELEMENTS_ROOT/src/sst/elements/simpleElementExample/tests/test_simpleRNGComponent_mersenne.py
 ```
 
-
+## Coming Soon: Example PBS Script 
